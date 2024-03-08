@@ -23,8 +23,9 @@ tasks:
         type: io.kestra.plugin.docker.Build
         dockerfile: "Dockerfile"
         tags: 
-          - registry.hub.docker.com/xcad2k/hello-docker:latest
+          - xcad2k/hello-docker:latest
         push: true
         credentials:
-          username: "{{ envs.dockerhub_username }}"
-          password: "{{ envs.dockerhub_password }}"
+          registry: https://index.docker.io/v1/ 
+          username: "{{ secret('DOCKERHUB_USERNAME') }}"
+          password: "{{ secret('DOCKERHUB_PASSWORD') }}"
