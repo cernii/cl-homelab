@@ -1,0 +1,18 @@
+---
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:2024.3.0
+    container_name: cloudflared-prod-1
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    command: tunnel --no-autoupdate run
+    networks:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
